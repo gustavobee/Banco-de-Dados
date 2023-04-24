@@ -1,0 +1,41 @@
+• create database <nome>; // cria um database novo
+• drop database <nome>; // remove um database já criado
+
+• Exemplo:
+• create database teste;
+• drop database teste;
+
+create table <nome>
+    (<descrição das colunas>);
+    (<descrição das chaves>);
+    
+• <tabela>: nome da tabela a ser criada;
+• <descrição das colunas>: lista de campos e seus respectivos tipos de dados;
+• <descrição das chaves> é a lista de colunas tratadas como chave estrangeira.
+
+Tipo de dados:
+
+•Caractere: char(n), varchar(n)
+  Numérico exato: decimal(p,e) ou numerico(p,e)
+  Numérico aproximado: float, real
+  Numérico inteiro: int, smallint, tinyint
+  Monetário: money, smallmoney
+  Data e hora: datetime, smalldatetime
+  Texto e imagens: text, image, ntext
+  Outros: bit, timestamp
+
+• Exemplo: 
+
+insert into funcionario values (
+1,
+'meu nome',
+'meu contato',
+123487,
+'meu endereco',
+'cidade',
+'pais'
+);
+
+• select * from funcionario;
+• delete from funcionário where id=1;
+• select * from funcionario;
