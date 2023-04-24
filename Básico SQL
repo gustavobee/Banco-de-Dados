@@ -1,41 +1,119 @@
 • create database <nome>; // cria um database novo
 • drop database <nome>; // remove um database já criado
 
-• Exemplo:
-• create database teste;
-• drop database teste;
+* Exemplo:
+    • create database teste;
+    • drop database teste;
 
-create table <nome>
-    (<descrição das colunas>);
-    (<descrição das chaves>);
+    create table <nome>
+        (<descrição das colunas>);
+        (<descrição das chaves>);
     
-• <tabela>: nome da tabela a ser criada;
-• <descrição das colunas>: lista de campos e seus respectivos tipos de dados;
-• <descrição das chaves> é a lista de colunas tratadas como chave estrangeira.
+    • <tabela>: nome da tabela a ser criada;
+    • <descrição das colunas>: lista de campos e seus respectivos tipos de dados;
+    • <descrição das chaves> é a lista de colunas tratadas como chave estrangeira.
 
-Tipo de dados:
+* Tipo de dados:
 
-•Caractere: char(n), varchar(n)
-  Numérico exato: decimal(p,e) ou numerico(p,e)
-  Numérico aproximado: float, real
-  Numérico inteiro: int, smallint, tinyint
-  Monetário: money, smallmoney
-  Data e hora: datetime, smalldatetime
-  Texto e imagens: text, image, ntext
-  Outros: bit, timestamp
+    • Caractere: char(n), varchar(n)
+    • Numérico exato: decimal(p,e) ou numerico(p,e)
+    • Numérico aproximado: float, real
+    • Numérico inteiro: int, smallint, tinyint
+    • Monetário: money, smallmoney
+    • Data e hora: datetime, smalldatetime
+    • Texto e imagens: text, image, ntext
+    • Outros: bit, timestamp
 
-• Exemplo: 
+* Exemplo: 
 
-insert into funcionario values (
-1,
-'meu nome',
-'meu contato',
-123487,
-'meu endereco',
-'cidade',
-'pais'
-);
+    insert into funcionario values (
+    1,
+    'meu nome',
+    'meu contato',
+    123487,
+    'meu endereco',
+    'cidade',
+    'pais'
+    );
 
-• select * from funcionario;
-• delete from funcionário where id=1;
-• select * from funcionario;
+    • select * from funcionario;
+    • delete from funcionário where id=1;
+    • select * from funcionario;
+
+* Outro Exemplo: 
+
+    nome,cargo,salario
+    Ana Maria,RH,3500.00
+    Carlos Souza,Analista de Sistemas,4500.00
+    Mariana Lima,Assistente Administrativo,2800.00
+    Fernando Santos,Coordenadorde Vendas,6500.00
+    Juliana Costa,DesenvolvedorWeb,5500.00
+    Lucas Ferreira,Designer Gráfico,4000.00
+    Lívia Oliveira,Gerentede Marketing,8000.00
+    Rafaela Rodrigues,Analista Financeiro,6000.00
+    Thiago Alves,Gerente de Projetos,7500.00
+    Vinícius Silva,DesenvolvedorMobile,5000.00
+
+    CREATE TABLE funcionarios (
+    nome VARCHAR(50),
+    cargo VARCHAR(50),
+    salario DECIMAL(10, 2)
+    );
+
+    INSERT INTO funcionarios(nome, cargo, salario)
+    VALUES
+    ('Ana Maria', 'RH', 3500.00),
+    ('Carlos Souza', 'Analista de Sistemas', 4500.00),
+    ('Mariana Lima', 'Assistente Administrativo', 2800.00),
+    ('Fernando Santos', 'Coordenador de Vendas', 6500.00),
+    ('Juliana Costa', 'Desenvolvedor Web', 5500.00),
+    ('Lucas Ferreira', 'Designer Gráfico', 4000.00),
+    ('Lívia Oliveira', 'Gerente de Marketing', 8000.00),
+    ('Rafaela Rodrigues', 'Analista Financeiro', 6000.00),
+    ('Thiago Alves', 'Gerente de Projetos', 7500.00),
+    ('Vinícius Silva', 'Desenvolvedor Mobile', 5000.00);
+
+* Concatenando os valores da coluna: 
+
+    • Você pode querer retornar múltiplas colunas como uma única coluna:
+        • Exemplo: Maria trabalha como Caixa;
+    • É possível usar o select para realizar esse retorno personalizado:
+        • select <coluna1>||’ algum texto ‘||<coluna2> as <novo_nome_coluna> from <tabela>
+          where <condições>
+    • Aplique a ideia na tabela criada;
+
+* Limitando o número de linhas retornadas:
+
+    • Você pode querer limitar o número de linhas retornadas de um select:
+        • Exemplo: retornar apenas as 5 primeiras linhas;
+    • É possível usar o select para realizar esse retorno personalizado:
+        • select <colunas> from <tabela> limit <numero_de_elementos>
+    • Aplique a ideia na tabela criada;
+    • É possível fazer esse select para selecionar aleatoriamente valores retornados:
+        • select <colunas> from <tabela> order by random() limit <numero_de_elementos>
+    • Aplique a ideia na tabela criada;
+    
+* Procurando Padrões:    
+
+    • Você pode querer usar padrões de busca para fazer seleções;
+        • Exemplo: buscar apenas desenvolvedores (qualquer seja o tipo);
+    • Para fazer isso, você pode usar o operador LIKE com o operador wildcard %;
+    • Tente a seguinte query:
+        • select * from funcionarioswhere cargo like ‘Desenvolvedor%’;
+    • Pesquise: como fazer um like case-insensitive no PostgreSQL?
+        • Usar o ILIKE;
+        • Aplicar o LOWER na coluna e na string comparada;
+        
+* Retornando resultados ordenados: 
+
+    • Para fazer seleções com ordenação, em geral pode-se utilizar o ‘order by’;
+    • Vamos considerar a tabela em questão e retornar ordenado com base no salário:
+        • Tente order by <coluna> asc;
+        • Tente order by <coluna> desc;
+    • É possível aplicar a lógica em múltiplos campos, separados por vírgula:
+        • Faça com que a tabela tenha mais de um funcionário com o mesmo cargo;
+        • Tente ordenar por cargo em ordem ascendente e por salário em ordem ascendente;
+        • Teste variações manipulando a tabela.
+    • É possível aplicar processamentos nas próprias colunas:
+        • Pesquise como eu faria a mesma ordenação considerando apenas o primeiro nome do cargo;
+        • Você pode aplicar o split_part na coluna: split_part(<string>, <delimitador>, <posição>) 
