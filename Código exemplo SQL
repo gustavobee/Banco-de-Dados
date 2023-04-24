@@ -1,0 +1,46 @@
+create table funcionarios
+(
+nome VARCHAR(50),
+cargo VARCHAR(50),
+salario DECIMAL(10,2)
+);
+
+INSERT INTO funcionarios(nome, cargo, salario)
+VALUES
+('Ana Maria', 'RH', 3500.00),
+('Carlos Souza', 'Analista de Sistemas', 4500.00),
+('Mariana Lima', 'Assistente Administrativo', 2800.00),
+('Fernando Santos', 'Coordenador de Vendas', 6500.00),
+('Juliana Costa', 'Desenvolvedor Web', 5500.00),
+('Rafaela Rodrigues', 'Analista Financeiro', 6000.00),
+('Thiago Alves', 'Gerente de Projetos', 7500.00),
+('Lucas Ferreira', 'Designer Gráfico', 4000.00),
+('Lívia Oliveira', 'Gerente de Marketing', 8000.00),
+('Vinícius Silva', 'Desenvolvedor Mobile', 5000.00);
+
+select * from funcionarios;
+
+select nome||' trabalha como '||cargo||' e ganha '||salario as nome_cargo_salario from funcionarios f;
+
+select nome||' trabalha como '||cargo||' e ganha '||salario as nome_cargo_salario from funcionarios f limit 3 offset 3; --offset vai mostrar a partir da linha que eu selecionei
+
+select nome from funcionarios limit 6;
+
+select nome from funcionarios order by random() limit 6;
+
+select * from funcionarios f where cargo like 'Desenvolvedor%'; -- a % fala que o que tiver após desenvolvedor não importa
+select * from funcionarios f where lower(cargo) like lower('desenvolvedor%');
+select * from funcionarios f where cargo ilike 'Desenvolvedor%';
+
+select * from funcionarios f order by salario asc; -- pode usar pra nome e cargo tbm
+select * from funcionarios f order by salario desc;
+
+insert into funcionarios values
+('Carlos', 'Desenvolvedor Mobile', 8000),
+('Paula', 'Desenvolvedor Mobile', 10000);
+insert into funcionarios values
+('Carlos', 'Desenvolvedor Mobile', 9000),
+('Carlos', 'Desenvolvedor Mobile', 10000);
+select * from funcionarios f order by cargo desc, salario asc; -- prioriza o que estiver primeiro, mas se tiver repetido aí a ordem do salário é aplicada
+select * from funcionarios f order by cargo desc, nome asc;
+select * from funcionarios f order by cargo asc, nome asc, salario asc;
